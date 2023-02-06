@@ -34,7 +34,7 @@ class NoteItem extends StatelessWidget {
             trailing: GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => EditNoteView()));
+                    MaterialPageRoute(builder: (context) =>const EditNoteView()));
               },
               child: Icon(FontAwesomeIcons.trash,
                   size: 23, color: Colors.black.withOpacity(0.8)),
