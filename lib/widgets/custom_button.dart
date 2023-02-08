@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
             color: kPrimaryColor, borderRadius: BorderRadius.circular(10)),
         alignment: Alignment.center,
         child: Text('$text',
-            style: const TextStyle(fontSize: 24, color:Colors.white)),
+            style:  TextStyle(fontSize: 24, color:Colors.black.withOpacity(0.8))),
       ),
     );
   }
