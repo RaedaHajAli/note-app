@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:noteapp/widgets/custom_appbar.dart';
-import 'package:noteapp/widgets/custom_textfield.dart';
+import 'package:noteapp/views/widgets/custom_appbar.dart';
+import 'package:noteapp/views/widgets/custom_textfield.dart';
 
 class EditNoteBody extends StatelessWidget {
   const EditNoteBody({super.key});

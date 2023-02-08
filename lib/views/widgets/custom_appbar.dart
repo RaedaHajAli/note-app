@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/widgets/custom_icon.dart';
+import 'package:noteapp/views/widgets/custom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key, required this.title, required this.icon}) : super(key: key);
