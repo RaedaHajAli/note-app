@@ -24,50 +24,53 @@ class _AddNoteFormState extends State<AddNoteForm> {
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          CustomTextField(
-            title: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          CustomTextField(
-            title: 'Content',
-            maxLines: 5,
-            onSaved: (value) {
-              content = value;
-            },
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          BlocBuilder<AddNoteCubit,AddNoteState>(
-            builder: (context,state) {
-              return CustomButton(
-                isLoading:state is AddNoteLoading?true:false,
-                text: 'Add',
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    NoteModel note = NoteModel(
-                        title: title!,
-                        subTitle: content!,
-                        date: DateTime.now().toString(),
-                        color: Colors.orange.value);
-                    BlocProvider.of<AddNoteCubit>(context).addNote(note);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-              );
-            }
-          )
-        ],
+      child: Container(
+        height: 300,
+        child: Column(
+          children: [
+            CustomTextField(
+              title: 'Title',
+              onSaved: (value) {
+                title = value;
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomTextField(
+              title: 'Content',
+              maxLines: 5,
+              onSaved: (value) {
+                content = value;
+              },
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            BlocBuilder<AddNoteCubit,AddNoteState>(
+              builder: (context,state) {
+                return CustomButton(
+                  isLoading:state is AddNoteLoading?true:false,
+                  text: 'Add',
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      NoteModel note = NoteModel(
+                          title: title!,
+                          subTitle: content!,
+                          date: DateTime.now().toString(),
+                          color: Colors.orange.value);
+                      BlocProvider.of<AddNoteCubit>(context).addNote(note);
+                    } else {
+                      autovalidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                );
+              }
+            )
+          ],
+        ),
       ),
     );
   }

@@ -16,9 +16,9 @@ class AddNoteBottomSheet extends StatelessWidget {
         builder: (context, state) => AbsorbPointer(
           absorbing: state is AddNoteLoading? true:false,
           
-          child: const Padding(
-            padding: EdgeInsets.only(top: 24, left: 16, right: 16),
-            child: AddNoteForm(),
+          child:  Padding(
+            padding: EdgeInsets.only(top: 24, left: 16, right: 16,bottom: MediaQuery.of(context).viewInsets.bottom),
+            child:const AddNoteForm(),
           ),
         ),
         listener: (context, state) {
