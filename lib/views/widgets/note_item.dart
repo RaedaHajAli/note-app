@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:noteapp/models/note_model.dart';
 import 'package:noteapp/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({Key? key}) : super(key: key);
+  const NoteItem({Key? key, required this.note}) : super(key: key);
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
-        color: Colors.orange,
+        color: Color(note.color),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -19,29 +21,31 @@ class NoteItem extends StatelessWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
-              'Flutter tips',
+              note.title,
               style:
                   TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 30),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 10),
               child: Text(
-                'Build your career with Raeda Haj Ali',
+                note.subTitle,
                 style: TextStyle(
                     color: Colors.black.withOpacity(0.35), fontSize: 23),
               ),
             ),
             trailing: GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) =>const EditNoteView()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EditNoteView()));
               },
               child: Icon(FontAwesomeIcons.trash,
                   size: 23, color: Colors.black.withOpacity(0.8)),
             ),
           ),
           Text(
-            '5- Feb-2023',
+            note.date,
             style:
                 TextStyle(color: Colors.black.withOpacity(0.35), fontSize: 20),
           )
