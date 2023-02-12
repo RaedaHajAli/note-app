@@ -11,49 +11,55 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      decoration: BoxDecoration(
-        color: Color(note.color),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              note.title,
-              style:
-                  TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 30),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 10),
-              child: Text(
-                note.subTitle,
-                style: TextStyle(
-                    color: Colors.black.withOpacity(0.35), fontSize: 23),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>  EditNoteView(note: note,)));
+
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        decoration: BoxDecoration(
+          color: Color(note.color),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                note.title,
+                style:
+                    TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 30),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 10),
+                child: Text(
+                  note.subTitle,
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.35), fontSize: 23),
+                ),
+              ),
+              trailing: GestureDetector(
+                onTap: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchNotes();
+                  
+                },
+                child: Icon(FontAwesomeIcons.trash,
+                    size: 23, color: Colors.black.withOpacity(0.8)),
               ),
             ),
-            trailing: GestureDetector(
-              onTap: () {
-                note.delete();
-                BlocProvider.of<NotesCubit>(context).fetchNotes();
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => const EditNoteView()));
-              },
-              child: Icon(FontAwesomeIcons.trash,
-                  size: 23, color: Colors.black.withOpacity(0.8)),
-            ),
-          ),
-          Text(
-            note.date,
-            style:
-                TextStyle(color: Colors.black.withOpacity(0.35), fontSize: 20),
-          )
-        ],
+            Text(
+              note.date,
+              style:
+                  TextStyle(color: Colors.black.withOpacity(0.35), fontSize: 20),
+            )
+          ],
+        ),
       ),
     );
   }
