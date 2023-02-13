@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:noteapp/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:noteapp/models/note_model.dart';
 
+import 'color_listview.dart';
 import 'custom_button.dart';
 import 'custom_textfield.dart';
 
@@ -75,7 +76,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
           title: title!,
           subTitle: content!,
           date: DateFormat('dd-MM-yyyy').format(DateTime.now()),
-          color: Colors.orange.value);
+          color: BlocProvider.of<AddNoteCubit>(context).color.value);
       BlocProvider.of<AddNoteCubit>(context).addNote(note);
     } else {
       autovalidateMode = AutovalidateMode.always;
@@ -84,37 +85,4 @@ class _AddNoteFormState extends State<AddNoteForm> {
   }
 }
 
-class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.blue,
-    );
-  }
-}
-
-class ColorListView extends StatelessWidget {
-  const ColorListView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 15 * 2,
-      child: ListView.separated(
-        itemBuilder: (context, index) {
-          return const ColorItem();
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            width: 5,
-          );
-        },
-        itemCount: 20,
-        scrollDirection: Axis.horizontal,
-      ),
-    );
-  }
-}
