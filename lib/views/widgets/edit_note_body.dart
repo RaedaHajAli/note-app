@@ -5,8 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:noteapp/models/note_model.dart';
+import 'package:noteapp/views/widgets/color_listview.dart';
 import 'package:noteapp/views/widgets/custom_appbar.dart';
 import 'package:noteapp/views/widgets/custom_textfield.dart';
+import 'package:noteapp/views/widgets/edit_color_list.dart';
 
 class EditNoteBody extends StatefulWidget {
   const EditNoteBody({super.key, required this.note});
@@ -58,7 +60,11 @@ class _EditNoteBodyState extends State<EditNoteBody> {
             onChanged: (value) {
               content = value;
             },
-          )
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+        EditColorList(note: widget.note,),
         ],
       ),
     );
